@@ -1,9 +1,12 @@
 import express from 'express';
 import * as minio from 'minio';
+import * as dotenv from 'dotenv';
+
+dotenv.config()
 
 const app = express();
 
-const bucketName = 'example-bucket'
+const bucketName = 'zeabur-example-bucket'
 
 let minioClient: minio.Client;
 
@@ -96,16 +99,16 @@ app.get('/', (req, res) => {
       <p>Run following bash command to create a text file:</p>
       <pre>echo "Hello World" > hello.txt</pre>
       <p>Then, run following curl command to upload the file to MinIO storage.</p>
-      <pre>curl -X POST -T hello.txt https://minio-express-example.zeabur.app/upload</pre> 
+      <pre>curl -X POST -T hello.txt https://zeabur-minio-example.zeabur.app/upload</pre> 
     </body>
   </html>
   `)
 })
 
 app.post('/upload', async (req, res) => {
-  const randomFileName = Math.random().toString(36).substring(7)
+  const randomFileName = self.crypto.randomUUID()
   await minioClient.putObject(bucketName, randomFileName, req)
-  res.end('Your file is now available at https://minio-example.zeabur.app/' + bucketName + '/' + randomFileName + ' !')
+  res.end('Your file is now available at https://zeabur-minio-example.zeabur.app/' + bucketName + '/' + randomFileName + ' !')
 })
 
 
