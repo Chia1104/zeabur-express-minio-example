@@ -89,8 +89,6 @@ const init = async () => {
 }
 
 app.get('/', (req, res) => {
-  console.log('STORAGE_ENDPOINT', process.env.STORAGE_ENDPOINT, "STORAGE_PORT", process.env.STORAGE_PORT, "STORAGE_USER", process.env.STORAGE_USER, "STORAGE_PASSWORD", process.env.STORAGE_PASSWORD, "STORAGE_USE_SSL", process.env.STORAGE_USE_SSL)
-
   res.writeHead(200, { 'Content-Type': 'text/html' })
   res.end(`
   <html lang="en-US">
