@@ -106,7 +106,8 @@ app.get('/', (req, res) => {
 })
 
 app.post('/upload', async (req, res) => {
-  const randomFileName = self.crypto.randomUUID()
+  // const randomFileName = self.crypto.randomUUID()
+  const randomFileName = Math.random().toString(36).substring(7)
   await minioClient.putObject(bucketName, randomFileName, req)
   res.end('Your file is now available at https://zeabur-minio-example.zeabur.app/' + bucketName + '/' + randomFileName + ' !')
 })
